@@ -1,0 +1,29 @@
+<html>
+  <head> 
+    <style>
+      body{
+        align-items: center;
+    display: flex;
+    flex-direction: column;
+    min-width: fit-content;
+    position: relative;
+    z-index: 1;
+    margin-top: 130;
+      }
+    </style>
+  </head>
+
+  
+
+  <body>
+    {%if data == 0%}
+    <h1>FAKE NEWS</h1>
+
+    {%else%}
+    <h1>REAL NEWS</h1>
+
+    {%endif%}
+
+    <a href="/">go back to home page</a>
+  </body>
+</html>

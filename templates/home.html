@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <title>Fake News Detaction</title>
+    <style>
+      form{
+        width: 300px;
+        margin-top: 120;
+        margin-left: 360;
+        text-align: center;
+
+        align-items: center;
+    display: flex;
+    flex-direction: column;
+    min-width: fit-content;
+    position: relative;
+    z-index: 1;
+
+      }
+
+      h1,h3{
+        text-align: center;
+        margin-top: 35px;
+      }
+
+      h3{
+        margin-top: -10px;
+      }
+
+      .take_input{
+        height: 35px;
+        width: 400px;
+        border-radius: 25px;
+      }
+      #sub_but{
+        border-radius: 10px;
+        height: 25px;
+        margin-top: -10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>
+      FAKE NEWS Detaction
+    </h1>
+    <h3>
+      A Complete Solution
+    </h3>
+    <form method="POST" , action="{{url_for('home')}}">
+      <input
+        type="text", name='text_inp', height="100", width="30", placeholder="type your news here", class="take_input"><br /><br />
+      <button type="submit" , value="predict!", id="sub_but">Check Your News</button>
+    </form>
+  </body>
+</html>
