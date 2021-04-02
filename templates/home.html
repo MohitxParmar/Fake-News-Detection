@@ -1,60 +1,166 @@
 <html>
   <head>
-    <title>Fake News Detaction</title>
-    <style>
-      form{
-        width: 300px;
-        margin-top: 120;
-        margin-left: 360;
-        text-align: center;
 
-        align-items: center;
-    display: flex;
-    flex-direction: column;
-    min-width: fit-content;
-    position: relative;
-    z-index: 1;
 
-      }
+    <title>Fake News Detection - A Complete Solution</title>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-      h1,h3{
-        text-align: center;
-        margin-top: 35px;
-      }
+    
+ 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-      h3{
-        margin-top: -10px;
-      }
-
-      .take_input{
-        height: 35px;
-        width: 400px;
-        border-radius: 25px;
-      }
-      #sub_but{
-        border-radius: 10px;
-        height: 25px;
-        margin-top: -10px;
-      }
-    </style>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+
+   <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    
   </head>
 
-  <body>
-    <h1>
-      Fake News Detection
-    </h1>
-    <h3>
-      A Complete Solution
-    </h3>
-    <form method="POST" , action="{{url_for('home')}}">
-      <input
-        type="text", name='text_inp', height="100", width="30", placeholder="type your news here", class="take_input"><br /><br />
-      <button type="submit" , value="predict!", id="sub_but">Check Your News</button>
-    </form>
+
+
+  <body id="page-top">
+
+
+
+		  	<header class="header">
+		  	 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
+		  <a class="navbar-brand" href="/index">Navbar</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li class="nav-item active">
+		        <a class="nav-link" href="/index">Home <span class="sr-only">(current)</span></a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">Link</a>
+		      </li>
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Dropdown
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" href="#">Action</a>
+		          <a class="dropdown-item" href="#">Another action</a>
+		          <div class="dropdown-divider"></div>
+		          <a class="dropdown-item" href="#">Something else here</a>
+		        </div>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link disabled" href="#">Disabled</a>
+		      </li>
+		    </ul>
+		    <form class="form-inline my-2 my-lg-0">
+		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		    </form>
+		  </div>
+		</nav>
+
+
+		  </header>
+
+		      <br>
+		      <br>
+
+		<div class="container">
+			<div class="jumbotron text-center">
+		    <h1>
+		      Fake News Detection
+		    </h1>
+		    <h3>
+		      A Complete Solution
+		    </h3>
+		    <form method="POST" , action="{{url_for('home')}}">
+		      <input type="text", name='text_inp', word-break= 'break-word' , placeholder="type your news here", class="form_control" required="required" size="90">
+		      
+		     <!--  <textarea name="Text1" cols="100" rows="5" name='text_inp', placeholder="type your news here", class="form_control" required="required"></textarea> -->
+		      <br /><br />
+		        <!--- take_input m-->
+		      <button type="submit" , value="predict!", id="sub_but" class="btn-danger">Check Your News</button>
+		    </form>
+		  </div>
+
+		</div>
+
+		<div class="row">
+
+		<div class="col-lg-6 mb-4">
+
+                            <!-- Illustrations -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                                src="{{ url_for('static', filename='img/undraw_posting_photo.svg')}}" alt="">
+                        </div>
+                        <p>Add some quality, svg illustrations to your project courtesy of <a
+                                target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
+                            constantly updated collection of beautiful svg images that you can use
+                            completely free and without attribution!</p>
+                        <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
+                            unDraw &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+   
+
+
+       <div class="col-lg-6 mb-4">
+
+                            <!-- Illustrations -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                                src="{{ url_for('static', filename='img/undraw_posting_photo.svg')}}" alt="">
+                        </div>
+                        <p>Add some quality, svg illustrations to your project courtesy of <a
+                                target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
+                            constantly updated collection of beautiful svg images that you can use
+                            completely free and without attribution!</p>
+                        <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
+                            unDraw &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+<div class="container">
+		<div class="row">
+			<div class="col-lg-3 mb-4 ">
+				<h1><a href="/logout">Logout</a></h1>
+			</div>
+
+		</div>
+</div>
+
+</body>
+
+ <!-- Vendor JS Files -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+
+
+
   </body>
 </html>
