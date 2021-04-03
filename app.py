@@ -39,35 +39,40 @@ def man():
 
 
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['POST','GET'])
 def home():
-    #take input from the form of home.html
-    inp = request.form['text_inp']
+    if 'user_id' in session:
+        #take input from the form of home.html
+        inp = request.form['text_inp']
 
-    #load the pickle file which containes main ML Model
-    model = pickle.load(open('fake_news.pkl', 'rb'))
+        #load the pickle file which containes main ML Model
+        model = pickle.load(open('fake_news.pkl', 'rb'))
 
-    #load the pickle file which containes string to float converter
-    model_tfidf_vectorizer = pickle.load(open('fake_news_tfidf_vectorizer.pkl', 'rb'))
+        #load the pickle file which containes string to float converter
+        model_tfidf_vectorizer = pickle.load(open('fake_news_tfidf_vectorizer.pkl', 'rb'))
 
-    #tfidf_vectorizer = TfidfVectorizer(stop_words='english')
-    #This is to convert that string to float
-    inp_ser = pd.Series(data=inp)
-    tfidf_inp_ser = model_tfidf_vectorizer.transform(inp_ser)
+        #tfidf_vectorizer = TfidfVectorizer(stop_words='english')
+        #This is to convert that string to float
+        inp_ser = pd.Series(data=inp)
+        tfidf_inp_ser = model_tfidf_vectorizer.transform(inp_ser)
 
 
-    ans = model.predict(tfidf_inp_ser)
-    if ans == 'REAL':
-        pred = 1
+        ans = model.predict(tfidf_inp_ser)
+        if ans == 'REAL':
+            pred = 1
+        else:
+            pred = 0
+
+        return render_template('after.html', data = pred)
     else:
-        pred = 0
+        return redirect('/')
 
-    return render_template('after.html', data = pred)
 
 @app.route("/login", methods = ["GET","POST"])
 def login():
     r =""
     msg = ""
+
     if(request.method == "POST"):
         if(request.form["username"]!="" and request.form["password"]!=""):
             username = request.form["username"]
@@ -84,10 +89,10 @@ def login():
                     return redirect("index")
                 else:
                     msg= "Please enter valid username and password"
-
-            
+      
             
     return render_template("login.html",msg = msg)
+
 
 @app.route("/index")
 def index():
