@@ -31,7 +31,7 @@ def man():
             c.execute("INSERT INTO users VALUES('"+username+"','"+emailId+"','"+password+"')")
             conn.commit()
             conn.close()
-            msg="Your account is created"
+            msg="Your account has been created !"
         else:
             msg = "Please fill all the entries"
 
@@ -41,37 +41,78 @@ def man():
 
 @app.route('/predict', methods=['POST','GET'])
 def home():
-    if 'user_id' in session:
-        #take input from the form of home.html
-        inp = request.form['text_inp']
+     #take input from the form of home.html
+    inp = request.form['text_inp']
 
-        #load the pickle file which containes main ML Model
-        model = pickle.load(open('fake_news.pkl', 'rb'))
+    #load the pickle file which containes LR Model
+    LR_model = pickle.load(open('LR_fake_news.pkl', 'rb'))
 
-        #load the pickle file which containes string to float converter
-        model_tfidf_vectorizer = pickle.load(open('fake_news_tfidf_vectorizer.pkl', 'rb'))
+    # load the pickle file which containes DT Model
+    DT_model = pickle.load(open('DT_fake_news.pkl', 'rb'))
 
-        #tfidf_vectorizer = TfidfVectorizer(stop_words='english')
-        #This is to convert that string to float
-        inp_ser = pd.Series(data=inp)
-        tfidf_inp_ser = model_tfidf_vectorizer.transform(inp_ser)
+    # load the pickle file which containes pac Model
+    pac_model = pickle.load(open('pac_fake_news.pkl', 'rb'))
+
+    # load the pickle file which containes rfc Model
+    RFC_model = pickle.load(open('RFC_fake_news.pkl', 'rb'))
+
+    #To classify news
+    news_category_model = pickle.load(open(r'Category classifier\news_category_classifier.pkl', 'rb'))
+    news_category = news_category_model.predict([inp])
+    categories = ['business', 'entertainment', 'politics', 'sport', 'tech']
+    news_category = categories[int(news_category)]
+    print(news_category)
+
+    #load the pickle file which containes string to float converter
+    model_tfidf_vectorizer = pickle.load(open('fake_news_tfidf_vectorizer.pkl', 'rb'))
+
+    #tfidf_vectorizer = TfidfVectorizer(stop_words='english')
+    #This is to convert that string to float
+    inp_ser = pd.Series(data=inp)
+    tfidf_inp_ser = model_tfidf_vectorizer.transform(inp_ser)
+
+    #To store all predictions of various Algorithm
+    all_ans = []
+
+    #Answer of LR
+    LR_ans = LR_model.predict(tfidf_inp_ser)
+    all_ans.append(LR_ans)
+
+    # Answer of DT
+    DT_ans = DT_model.predict(tfidf_inp_ser)
+    all_ans.append(DT_ans)
+
+    # Answer of pac
+    pac_ans = pac_model.predict(tfidf_inp_ser)
+    all_ans.append(pac_ans)
+
+    # Answer of pac
+    RFC_ans = RFC_model.predict(tfidf_inp_ser)
+    all_ans.append(RFC_ans)
+
+    for i in all_ans:
+        if i == 1:
+            print('Real')
+        elif i == 0:
+            print('Fake')
 
 
-        ans = model.predict(tfidf_inp_ser)
-        if ans == 'REAL':
-            pred = 1
-        else:
-            pred = 0
 
-        return render_template('after.html', data = pred)
+
+    ''' if ans == 'REAL':
+        pred = 1
     else:
-        return redirect('/')
+        pred = 0 '''
+
+    return render_template('after.html', data = pac_ans, news_category = news_category)
+    # else:
+    #     return redirect('/index')
 
 
 @app.route("/login", methods = ["GET","POST"])
 def login():
     r =""
-    msg = ""
+    msg2 = ""
 
     if(request.method == "POST"):
         if(request.form["username"]!="" and request.form["password"]!=""):
@@ -87,11 +128,11 @@ def login():
                     session["username"] = username
                     session["user_id"]=r[0][0]
                     return redirect("index")
-                else:
-                    msg= "Please enter valid username and password"
+            else:
+                msg2= "Please enter a valid username and password"
       
             
-    return render_template("login.html",msg = msg)
+    return render_template("login.html",msg = msg2)
 
 
 @app.route("/index")

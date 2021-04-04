@@ -175,15 +175,17 @@
                     <h1>Sign Up</h1>
                     <p class="text-muted"> Please enter your details below!</p>
 
-                    <input type="text" name="username" placeholder="Username"> 
-                    <input type="password" name="password" placeholder="Password">
-                    <input type="email" name="email" placeholder="Email">
+                    <input type="text" required="required" name="username" placeholder="Username"> 
+                    <input type="password" required="required" name="password" placeholder="Password">
+                    <input type="email" required="required" name="email" placeholder="Email">
                     <!--  <a class="forgot text-muted" href="#">Forgot password?</a> -->   <input type="submit" name="" value="Sign up !" href="#">
+                    <p class="text-muted">{% if msg %}
+					{{msg}}
+					{% endif %}</p>
                     <p class="text-muted">Already a member?</p>
                     <a href="/login" style="color: white;">Login</a>
-                    {% if msg %}
-					{{msg}}
-					{% endif %}
+
+                    
                     <!-- <div class="col-md-12">
 
                         <ul class="social-network social-circle">

@@ -31,7 +31,7 @@
 
 		  	<header class="header">
 		  	 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
-		  <a class="navbar-brand" href="/index">Navbar</a>
+		  <a class="navbar-brand" href="/index">F. N. D.</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
@@ -59,10 +59,14 @@
 		        <a class="nav-link disabled" href="#">Disabled</a>
 		      </li>
 		    </ul>
-		    <form class="form-inline my-2 my-lg-0">
+		    <ul class="navbar-nav ml-auto">
+		      <li class="nav-item active">
+		        <a class="nav-link" href="/logout">Logout <span class="sr-only">(current)</span></a>
+		      </li></ul>
+		   <!--  <form class="form-inline my-2 my-lg-0">
 		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-		    </form>
+		    </form> -->
 		  </div>
 		</nav>
 
@@ -81,7 +85,7 @@
 		      A Complete Solution
 		    </h3>
 		    <form method="POST" , action="{{url_for('home')}}">
-		      <input type="text", name='text_inp', word-break= 'break-word' , placeholder="type your news here", class="form_control" required="required" size="90">
+		      <input type="text", name='text_inp' , placeholder="type your news here", class="form_control" required="required" size="90">
 		      
 		     <!--  <textarea name="Text1" cols="100" rows="5" name='text_inp', placeholder="type your news here", class="form_control" required="required"></textarea> -->
 		      <br /><br />
