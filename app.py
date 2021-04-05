@@ -18,6 +18,8 @@ c.execute("CREATE TABLE IF NOT EXISTS users(username TEXT, email TEXT, password 
 conn.commit()
 conn.close()
 
+
+
 @app.route('/', methods = ["GET","POST"])
 def man():
     msg = None
@@ -127,7 +129,9 @@ def login():
                     session["logedin"] = True
                     session["username"] = username
                     session["user_id"]=r[0][0]
-                    return redirect("index")
+                    
+                    # return redirect("index")
+                    return redirect(url_for('index', uname=username))
             else:
                 msg2= "Please enter a valid username and password"
       
@@ -138,19 +142,20 @@ def login():
 @app.route("/index")
 def index():
     if 'user_id' in session:
-        return render_template("home.html")
+        return render_template("home.html",msg=request.args.get('uname'))
     else:
         return redirect('/')
 
-# @app.route("/logout")
-# def logout():
-#     session.clear()
-#     return redirect(url_for("login"))
 
 @app.route('/logout')
 def logout():
     session.pop('user_id')
     return redirect('/')
+
+# @app.route('/userDet')
+# def userDet():
+    
+#     return render_template("userProfile.html")
 
 if __name__ == "__main__":
     # app.secret_key = 'some secret key'

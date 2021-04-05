@@ -57,21 +57,32 @@
 
 
   </header>
+    <br>
+          <br>
 
 <div class="container">
+
+  <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+              <li class="breadcrumb-item"><a href="javascript:void(0)">Predict</a></li>
+              <!-- <li class="breadcrumb-item active" aria-current="page">User Profile</li> -->
+            </ol>
+          </nav>
+
 	<div class="jumbotron text-center">
 
     {%if data == 0%}
-    <h1>FAKE NEWS</h1>
+    <h1 style="color: #E3301F">FAKE NEWS</h1>
 
     {%else%}
-    <h1>REAL NEWS</h1>
+    <h1 style="color: #5EDA17">REAL NEWS</h1>
 
     {%endif%}
 
     <h3>Category : {{news_category}}</h3>
 
-    <a href="/index">go back to home page</a>
+    <a href="/index">Go back to home page</a>
  
 </div>
 </div>

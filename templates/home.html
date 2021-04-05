@@ -9,7 +9,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="shortcut icon" href="{{url_for('static',filename='img/fake-news.png')}}">
 
+
+    <style type="text/css">
+    	.rounded-circle {
+    border-radius: 50%!important;
+}
+.img-profile {
+    height: 2rem;
+    width: 2rem;
+}
+.img-profile2{
+	height: 4rem;width:4rem;
+}
+    </style>
     
  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -20,7 +34,7 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   </head>
 
 
@@ -29,9 +43,9 @@
 
 
 
-		  	<header class="header">
-		  	 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
-		  <a class="navbar-brand" href="/index">F. N. D.</a>
+	<header class="header">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
+		  <a href="/index"><img src="{{url_for('static',filename='img/fake-news.png')}}" class="navbar-brand img-profile2 "></a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
@@ -42,9 +56,9 @@
 		        <a class="nav-link" href="/index">Home <span class="sr-only">(current)</span></a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Link</a>
+		        <a class="nav-link" href="#">About Us</a>
 		      </li>
-		      <li class="nav-item dropdown">
+		      <!-- <li class="nav-item dropdown">
 		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		          Dropdown
 		        </a>
@@ -54,15 +68,40 @@
 		          <div class="dropdown-divider"></div>
 		          <a class="dropdown-item" href="#">Something else here</a>
 		        </div>
-		      </li>
-		      <li class="nav-item">
+		      </li> -->
+		      <!-- <li class="nav-item">
 		        <a class="nav-link disabled" href="#">Disabled</a>
-		      </li>
+		      </li> -->
 		    </ul>
 		    <ul class="navbar-nav ml-auto">
-		      <li class="nav-item active">
+
+		    	<li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{% if msg %}
+					{{msg}}
+					{% endif %}</span>
+                                <img class="img-profile rounded-circle"
+                                    src="{{url_for('static',filename='img/undraw_profile.svg')}}">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="/userDet">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item nav-link" href="/logout">
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+		      <!-- <li class="nav-item active">
 		        <a class="nav-link" href="/logout">Logout <span class="sr-only">(current)</span></a>
-		      </li></ul>
+		      </li></ul> -->
 		   <!--  <form class="form-inline my-2 my-lg-0">
 		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -77,6 +116,14 @@
 		      <br>
 
 		<div class="container">
+			 <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+              <li class="breadcrumb-item"><a href="javascript:void(0)"></a></li>
+              <!-- <li class="breadcrumb-item active" aria-current="page">User Profile</li> -->
+            </ol>
+          </nav>
+
 			<div class="jumbotron text-center">
 		    <h1>
 		      Fake News Detection
@@ -85,7 +132,7 @@
 		      A Complete Solution
 		    </h3>
 		    <form method="POST" , action="{{url_for('home')}}">
-		      <input type="text", name='text_inp' , placeholder="type your news here", class="form_control" required="required" size="90">
+		      <input type="text" name='text_inp' pattern=".{100,}" placeholder="Paste your news over here (at least 100 characters)" class="form_control" required="required" size="90">
 		      
 		     <!--  <textarea name="Text1" cols="100" rows="5" name='text_inp', placeholder="type your news here", class="form_control" required="required"></textarea> -->
 		      <br /><br />
@@ -96,62 +143,72 @@
 
 		</div>
 
-		<div class="row">
+		
 
-		<div class="col-lg-6 mb-4">
-
-                            <!-- Illustrations -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="text-center">
-                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                src="{{ url_for('static', filename='img/undraw_posting_photo.svg')}}" alt="">
-                        </div>
-                        <p>Add some quality, svg illustrations to your project courtesy of <a
-                                target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                            constantly updated collection of beautiful svg images that you can use
-                            completely free and without attribution!</p>
-                        <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                            unDraw &rarr;</a>
-                    </div>
-                </div>
-            </div>
-
-   
-
-
-       <div class="col-lg-6 mb-4">
-
-                            <!-- Illustrations -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="text-center">
-                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                src="{{ url_for('static', filename='img/undraw_posting_photo.svg')}}" alt="">
-                        </div>
-                        <p>Add some quality, svg illustrations to your project courtesy of <a
-                                target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                            constantly updated collection of beautiful svg images that you can use
-                            completely free and without attribution!</p>
-                        <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                            unDraw &rarr;</a>
-                    </div>
-                </div>
-            </div>
-
-    </div>
 
 <div class="container">
 		<div class="row">
-			<div class="col-lg-3 mb-4 ">
-				<h1><a href="/logout">Logout</a></h1>
-			</div>
+			<div class="col-lg-9 mx-auto">
+            <!-- Accordion -->
+            <div id="accordionExample" class="accordion shadow">
+
+			 <!-- Accordion item 1 -->
+                <div class="card">
+                    <div id="headingOne" class="card-header bg-white shadow-sm border-0">
+                        <h2 class="mb-0">
+                            <button type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="btn btn-link text-dark font-weight-bold text-uppercase collapsible-link">What is "Fake News" and Why should we care about it?</button>
+                        </h2>
+                    </div>
+                    <div id="collapseOne" aria-labelledby="headingOne"  class="collapse show">
+                        <div class="card-body p-5">
+                            <p class="font-weight-light m-0">“Fake news” is a term that has come to mean different things to different people. At its core, we are defining “fake news” as those news stories that are false: the story itself is fabricated, with no verifiable facts, sources or quotes. Sometimes these stories may be propaganda that is intentionally designed to mislead the reader, or may be designed as “clickbait” written for economic incentives (the writer profits on the number of people who click on the story). In recent years, fake news stories have proliferated via social media, in part because they are so easily and quickly shared online.</p>
+                        </div>
+                    </div>
+                </div><!-- End -->
+
+                <!-- Accordion item 2 -->
+                <div class="card">
+                    <div id="headingTwo" class="card-header bg-white shadow-sm border-0">
+                        <h2 class="mb-0">
+                            <button type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="btn btn-link collapsed text-dark font-weight-bold text-uppercase collapsible-link">Why Fact-checking is important?</button>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" aria-labelledby="headingTwo"  class="collapse">
+                        <div class="card-body p-5">
+                            <p class="font-weight-light m-0">Fact-checking is incredibly important whether you're promoting a product/service, writing an opinion piece or reporting on a news story, it's vital to get all the facts right. A single mistake, no matter how small, could result in anything from losing your customers' trust to becoming the target of an internet backlash or even legal repercussions.</p>
+                        </div>
+                    </div>
+                </div><!-- End -->
+
+                <!-- Accordion item 3 -->
+                <div class="card">
+                    <div id="headingThree" class="card-header bg-white shadow-sm border-0">
+                        <h2 class="mb-0">
+                            <button type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="btn btn-link collapsed text-dark font-weight-bold text-uppercase collapsible-link">How are we detecting whether a news or an article is fake or not?</button>
+                        </h2>
+                    </div>
+                    <div id="collapseThree" aria-labelledby="headingThree"  class="collapse">  <!-- data-parent="#accordionExample" -->
+                        <div class="card-body p-5">
+                            <p class="font-weight-light m-0">preprocess , </p>
+                        </div>
+                    </div>
+                </div><!-- End -->
+
+                 <!-- Accordion item 3 -->
+                <div class="card">
+                    <div id="headingThree" class="card-header bg-white shadow-sm border-0">
+                        <h2 class="mb-0">
+                            <button type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="btn btn-link collapsed text-dark font-weight-bold text-uppercase collapsible-link">How you can stop the spread of fake news?</button>
+                        </h2>
+                    </div>
+                    <div id="collapseThree" aria-labelledby="headingThree"  class="collapse">
+                        <div class="card-body p-5">
+                            <p class="font-weight-light m-0">1.If you are not sure, don't share like or comment on that social media post. Because that will make social media algorithm think that it is important<br>2.Google it. Especially if it's an older hoax, you will find fact check as one of the top results. <br>3.If you know that it's fake then do not comment that it is fake because the algorithm only cares about number of likes and comments. <br> 4.If an article is full of ads or full of spelling mistakes then don't share it. <br>5.If it makes you angry, check twice! </p>
+                        </div>
+                    </div>
+                </div><!-- End -->
+
+            </div></div>
 
 		</div>
 </div>
