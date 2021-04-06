@@ -152,10 +152,10 @@ def logout():
     session.pop('user_id')
     return redirect('/')
 
-# @app.route('/userDet')
-# def userDet():
+@app.route('/userDet')
+def userDet():
     
-#     return render_template("userProfile.html")
+    return render_template("userProfile.html")
 
 if __name__ == "__main__":
     # app.secret_key = 'some secret key'
