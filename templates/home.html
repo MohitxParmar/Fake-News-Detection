@@ -16,6 +16,9 @@
     	.rounded-circle {
     border-radius: 50%!important;
 }
+.navbar{
+	position: fixed;
+}
 .img-profile {
     height: 2rem;
     width: 2rem;
@@ -44,7 +47,7 @@
 
 
 	<header class="header">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 		  <a href="/index"><img src="{{url_for('static',filename='img/fake-news.png')}}" class="navbar-brand img-profile2 "></a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
@@ -56,7 +59,7 @@
 		        <a class="nav-link" href="/index">Home <span class="sr-only">(current)</span></a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">About Us</a>
+		        <a class="nav-link active" href="/aboutUs">About Us</a>
 		      </li>
 		      <!-- <li class="nav-item dropdown">
 		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -112,8 +115,7 @@
 
 		  </header>
 
-		      <br>
-		      <br>
+		     
 
 		<div class="container">
 			 <nav aria-label="breadcrumb" class="main-breadcrumb">
@@ -189,7 +191,7 @@
                     </div>
                     <div id="collapseThree" aria-labelledby="headingThree"  class="collapse">  <!-- data-parent="#accordionExample" -->
                         <div class="card-body p-5">
-                            <p class="font-weight-light m-0">preprocess , </p>
+                            <p class="font-weight-light m-0">The fake news problem is tackled using a machine learning algorithm called Passive-Aggressive Classifier. The approach is implemented on two datasets of fake and real news. After performing the experiment, it is observed that Passive-Aggressive Classifier provides an accuracy of 99%. The performance of the proposed model is compared with the existing methods. The Passive-Aggressive Classifier provides the best result compared to others.</p>
                         </div>
                     </div>
                 </div><!-- End -->

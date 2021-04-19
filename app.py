@@ -18,7 +18,7 @@ c.execute("CREATE TABLE IF NOT EXISTS users(username TEXT, email TEXT, password 
 conn.commit()
 conn.close()
 
-
+userId = 0
 
 @app.route('/', methods = ["GET","POST"])
 def man():
@@ -46,17 +46,17 @@ def home():
      #take input from the form of home.html
     inp = request.form['text_inp']
 
-    #load the pickle file which containes LR Model
-    LR_model = pickle.load(open('LR_fake_news.pkl', 'rb'))
+    # load the pickle file which containes LR Model
+    # LR_model = pickle.load(open('LR_fake_news.pkl', 'rb'))
 
     # load the pickle file which containes DT Model
-    DT_model = pickle.load(open('DT_fake_news.pkl', 'rb'))
+    # DT_model = pickle.load(open('DT_fake_news.pkl', 'rb'))
 
-    # load the pickle file which containes pac Model
+    #load the pickle file which containes pac Model
     pac_model = pickle.load(open('pac_fake_news.pkl', 'rb'))
 
     # load the pickle file which containes rfc Model
-    RFC_model = pickle.load(open('RFC_fake_news.pkl', 'rb'))
+    # RFC_model = pickle.load(open('RFC_fake_news.pkl', 'rb'))
 
     #To classify news
     news_category_model = pickle.load(open(r'Category classifier\news_category_classifier.pkl', 'rb'))
@@ -77,20 +77,20 @@ def home():
     all_ans = []
 
     #Answer of LR
-    LR_ans = LR_model.predict(tfidf_inp_ser)
-    all_ans.append(LR_ans)
+    # LR_ans = LR_model.predict(tfidf_inp_ser)
+    # all_ans.append(LR_ans)
 
-    # Answer of DT
-    DT_ans = DT_model.predict(tfidf_inp_ser)
-    all_ans.append(DT_ans)
+    # # Answer of DT
+    # DT_ans = DT_model.predict(tfidf_inp_ser)
+    # all_ans.append(DT_ans)
 
     # Answer of pac
     pac_ans = pac_model.predict(tfidf_inp_ser)
     all_ans.append(pac_ans)
 
     # Answer of pac
-    RFC_ans = RFC_model.predict(tfidf_inp_ser)
-    all_ans.append(RFC_ans)
+    # RFC_ans = RFC_model.predict(tfidf_inp_ser)
+    # all_ans.append(RFC_ans)
 
     for i in all_ans:
         if i == 1:
@@ -129,6 +129,7 @@ def login():
                     session["logedin"] = True
                     session["username"] = username
                     session["user_id"]=r[0][0]
+                    userId = r[0][0]
                     
                     # return redirect("index")
                     return redirect(url_for('index', uname=username))
@@ -154,8 +155,23 @@ def logout():
 
 @app.route('/userDet')
 def userDet():
-    
+    conn = sqlite3.connect("signupDetails.db")
+    c= conn.cursor()
+    c.execute("SELECT * FROM users")
+    r = c.fetchall()
+    for i in r:
+        if session["user_id"] == r[0][0]:
+            return render_template("userProfile.html",data = str(i))
+
     return render_template("userProfile.html")
+
+
+@app.route('/aboutUs')
+def aboutUs():
+    
+    return render_template("aboutUs.html")
+
+
 
 if __name__ == "__main__":
     # app.secret_key = 'some secret key'

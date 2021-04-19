@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="{{url_for('static',filename='img/fake-news.png')}}">
 
 <style type="text/css">
   .rounded-circle {
@@ -54,7 +53,7 @@
           <li class="nav-item active">
             <a class="nav-link" href="/index">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="#">About Us</a>
           </li>
           <!-- <li class="nav-item dropdown">
@@ -77,9 +76,7 @@
           <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{% if msg %}
-          {{msg}}
-          {% endif %}</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                 <img class="img-profile rounded-circle"
                                     src="{{url_for('static',filename='img/undraw_profile.svg')}}">
                             </a>
@@ -118,21 +115,77 @@
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="index.html">Home</a></li>
               <!-- <li class="breadcrumb-item"><a href="javascript:void(0)"></a></li> -->
-              <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+              <li class="breadcrumb-item active" aria-current="page">About Us</li>
             </ol>
           </nav>
+<p>
+  This is a final year project build by three students of L. D. College of Engineering under the Guidance of Prof. Hetal Joshiyara . Their contact details is given below (click on their profile to get get their LinkedIn profile.You can send your queries or feedback at fakenewsdetectordev@gmail.com. 
+</p>
+   
 
 
-<h1>{% for item in data %}
-<tr>
-    <td>{{item[0]}}</td> 
-    <td>{{item[1]}}</td> 
-    <td>{{item[2]}}</td> 
-</tr>
-{% endfor %}</h1>
+<div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Priyadarshi Krunal</div>
+                                                   <a href="https://www.linkedin.com/in/krunal-priyadarshi-8b3313192" target="_blank"><img src="{{url_for('static',filename='img/krunal.jpg')}}" alt="Fjords" style="width:100%"></a>
+ 
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Mohit parmar</div>
+                                            <img src="{{url_for('static',filename='img/mohit.jpg')}}" alt="Fjords" style="width:100%">
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-dangerx text-uppercase mb-1">
+                                              Shivam Pavani </div>
+                                            <a href="https://www.linkedin.com/in/shivam-thacker" target="_blank"><img src="{{url_for('static',filename='img/shivam.jpeg')}}" alt="Fjords" style="width:100%"></a>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Pending Requests Card Example -->
+                        
+                    </div>
 
 </div>
-
 <!-- Vendor JS Files -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
